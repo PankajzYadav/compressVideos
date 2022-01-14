@@ -23,6 +23,7 @@ if overwrite=='N':
 
 quality_value = "25"                                                   # Compression quality
 count = 0                                                              # File count
+total_time = 0                                                         # Total time counter
 for file in source_dir_files:
     count+=1                                                          
     
@@ -38,9 +39,11 @@ for file in source_dir_files:
     try:
         start_time = time.time()                                        # Initializing Start time
         subprocess.run(command, shell=True, check=True)                 # Executing the command
-        print("--- %s seconds ---" % (time.time() - start_time))        # Time taken for execution
+        local_time = int(time.time() - start_time)
+        total_time += local_time                                        # Incrementing total time
+        print("--- %s seconds ---" % local_time)                        # Time taken for execution
     except:
         print(">>>>>>> Compression failed, check err.log for more info.\n")
 
 
-print("\n------------------------------| Process finished |-----------------------------")
+print("\n--------------------| Process finished in {} seconds. |--------------------".format(total_time))
