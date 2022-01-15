@@ -46,4 +46,4 @@ for file in source_dir_files:
         print(">>>>>>> Compression failed, check err.log for more info.\n")
 
 
-print("\n--------------------| Process finished in {} seconds. |--------------------".format(total_time))
+print("\n--------------------| Process finished in {:.2f} {}. |--------------------".format((total_time if total_time<60 else total_time/60), ("seconds" if total_time<60 else "minutes")))
